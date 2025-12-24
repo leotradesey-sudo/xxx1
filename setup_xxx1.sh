@@ -18,8 +18,6 @@ else
     cd ccminer
 fi
 
-fi
-
 # 3. Check for sse2neon (Required for ARM builds)
 if [ ! -f "verus/sse2neon/sse2neon.h" ]; then
     echo "sse2neon.h not found. Creating directory and downloading..."

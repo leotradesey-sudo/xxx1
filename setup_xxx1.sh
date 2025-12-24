@@ -18,7 +18,17 @@ else
     cd ccminer
 fi
 
-# 3. Apply Patch for v4 Alias
+fi
+
+# 3. Check for sse2neon (Required for ARM builds)
+if [ ! -f "verus/sse2neon/sse2neon.h" ]; then
+    echo "sse2neon.h not found. Creating directory and downloading..."
+    mkdir -p verus/sse2neon
+    wget -O verus/sse2neon/sse2neon.h https://raw.githubusercontent.com/DLTcollab/sse2neon/master/sse2neon.h
+    echo "sse2neon.h downloaded."
+fi
+
+# 4. Apply Patch for v4 Alias
 # We check if v4 is already in algos.h to avoid double insertion
 if ! grep -q '"v4"' algos.h; then
     echo "Applying v4 alias patch to algos.h..."
